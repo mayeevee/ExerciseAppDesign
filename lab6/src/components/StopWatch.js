@@ -1,13 +1,22 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 // creates the stopwatch feature and allows it to display on the screen in minutes, seconds and milliseconds
 
 let currentTimer = 0;
 let interval = null;
 let isRun = false;
+
 export default function StopWatch() {
   let [running, setRunning] = useState(false);
   let [timer, setTimer] = useState(0);
+
+  useEffect(() => {
+    return () => {
+      // Clean up the interval when the component is unmounted
+      clearInterval(interval);
+    };
+  }, []); // Empty dependency array ensures the effect runs only on mount and unmount
+
   function run() {
     isRun = !isRun;
     setRunning(isRun);
@@ -21,7 +30,7 @@ export default function StopWatch() {
       interval = setInterval(() => {
         currentTimer = currentTimer + 10;
         setTimer(currentTimer);
-      }, 10);
+      }, 1);
     }
   }
 

@@ -2,9 +2,11 @@ import "./App.css";
 import { useState } from "react";
 import DurationExercise from "./components/DurationExercise.js";
 import RepetitionExercise from "./components/RepetitionExercise.js";
+import RunningExercise from "./components/RunningExercise.js";
 
 const REPETITION_EXERCISE = "repetition";
 const DURATION_EXERCISE = "duration";
+const RUNNING_EXERCISE = "running"; // Added running exercise
 
 // exercise list with the types of exercises
 
@@ -12,8 +14,9 @@ const exerciseList = [
   { type: REPETITION_EXERCISE, name: "Push Ups", screen: 1 },
   { type: DURATION_EXERCISE, name: "Bicycling", screen: 2 },
   { type: REPETITION_EXERCISE, name: "Jumping Jacks", screen: 3 },
-  { type: DURATION_EXERCISE, name: "Running", screen: 4 },
+  { type: RUNNING_EXERCISE, name: "Running", screen: 4 }, // Changed to running exercise
   { type: REPETITION_EXERCISE, name: "Sit Ups", screen: 5 },
+  { type: REPETITION_EXERCISE, name: "Pull Ups", screen: 6}
 ];
 
 // displays main menu with exercise options
@@ -55,11 +58,12 @@ function App() {
         </div>
       );
       break;
+      // Changes to running exercise
     case 4:
       screenComponent = (
         <div>
           <h1>{currentExerciseName}</h1>
-          <DurationExercise exercise={"Running"} setMenuScreen={exceriseButtonClick} />
+          <RunningExercise exercise={"Running"} setMenuScreen={exceriseButtonClick} />
         </div>
       );
       break;
@@ -68,6 +72,14 @@ function App() {
         <div>
           <h1>{currentExerciseName}</h1>
           <RepetitionExercise exercise={"Sit Ups"} setMenuScreen={exceriseButtonClick} />
+        </div>
+      );
+      break;
+      case 6:
+      screenComponent = (
+        <div>
+          <h1>{currentExerciseName}</h1>
+          <RepetitionExercise exercise={"Pull Ups"} setMenuScreen={exceriseButtonClick} />
         </div>
       );
       break;
